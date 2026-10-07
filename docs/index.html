@@ -181,6 +181,17 @@ ol.how b { color:var(--ink); font-weight:600; }
     <nav aria-label="Rechtliches und Links"><a href="https://github.com/LinaLarsson42/releasebuilder-releases/releases">Alle Versionen</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav>
   </div>
 </footer>
-<script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById("y").textContent = new Date().getFullYear();
+// Autoplay nur am Desktop (Maus, Hover) und nicht bei "weniger Bewegung"; auf dem Handy bleibt es Tap-to-play.
+(function () {
+  var v = document.querySelector(".video video");
+  var m = window.matchMedia;
+  if (!v || !m || !m("(hover: hover) and (pointer: fine)").matches || m("(prefers-reduced-motion: reduce)").matches) return;
+  v.preload = "auto";
+  var p = v.play();
+  if (p && p.catch) p.catch(function () {});
+})();
+</script>
 </body>
 </html>
